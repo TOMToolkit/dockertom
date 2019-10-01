@@ -1,0 +1,6 @@
+tom_env
+db.sqlite3
+storage
+__pycache__
+README.md
+Dockerfile
