@@ -1,4 +1,4 @@
-DOCKER_IMG := dockertom
+PROJ := dockertom
 
 DB_VOL := tom-db
 
@@ -12,10 +12,20 @@ else
 TAG := $(GIT_TAG)-dirty
 endif
 
-all: docker-build
+all: build
 
-docker-build:
-	docker build --tag $(DOCKER_IMG):$(TAG) .
+build:
+	docker build --tag $(PROJ):$(TAG) .
 
-run:
-	docker run -it --rm --name dockertom --publish 8080:8080 --volume ${HOME}/workspace/lco/tom/dockertom/storage:/tom/storage dockertom:$(TAG)
+migrate:
+	./manage.py migrate
+
+run: migrate
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--name $(PROJ) \
+		--publish 8080:8080 \
+		--volume ${PWD}/storage:/tom/storage \
+		$(PROJ):$(TAG)
