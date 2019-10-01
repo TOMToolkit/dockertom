@@ -1,6 +1,8 @@
 PROJ := dockertom
 
-DB_VOL := tom-db
+VENV := tom_env
+
+DB_PATH := storage
 
 GIT_DIRTY := $(shell git status --porcelain)
 GIT_TAG := $(shell git describe --always)
@@ -17,10 +19,14 @@ all: build
 build:
 	docker build --tag $(PROJ):$(TAG) .
 
+venv:
+	python3 -m venv $(VENV)
+
 migrate:
+	[[ -d $(DB_PATH) ]] || mkdir $(DB_PATH)
 	./manage.py migrate
 
-run: migrate
+run: migrate build
 	docker run \
 		--interactive \
 		--tty \

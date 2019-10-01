@@ -2,13 +2,22 @@ FROM python:3.7
 
 WORKDIR /tom
 
-RUN pip install --no-cache-dir \
-	gevent \
-	gunicorn \
-	numpy \
-	tomtoolkit \
-	whitenoise
+COPY requirements.txt .
+
+RUN pip install \
+	--no-cache \
+	--disable-pip-version-check \
+	--requirement requirements.txt
 
 COPY . .
 
-CMD [ "gunicorn", "--bind=0.0.0.0:8080", "--worker-class=gevent", "--workers=4", "--timeout=300", "--access-logfile=-", "--error-logfile=-", "dockertom.wsgi:application" ]
+CMD [ \
+	"gunicorn", \
+	"--bind=0.0.0.0:8080", \
+	"--worker-class=gevent", \
+	"--workers=4", \
+	"--timeout=300", \
+	"--access-logfile=-", \
+	"--error-logfile=-", \
+	"dockertom.wsgi:application" \
+	]
