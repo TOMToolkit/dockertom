@@ -101,7 +101,7 @@ Access your TOM by going to [http://localhost:8080](http://localhost:8080)!
 ### Automation
 Typing the commands above to build and run your Docker image can become very
 repetitive and is not reproducible. To make development easier and production
-more reliable, they should be automated. This has been done using a
+more reliable, the commands should be automated. This has been done using a
 [Makefile](./Makefile) in this project which requires
 [Make](https://www.gnu.org/software/make/) to be installed.
 
