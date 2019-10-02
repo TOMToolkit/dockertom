@@ -4,6 +4,8 @@ VENV := tom_env
 
 DB_PATH := storage
 
+C_APP := docker
+
 GIT_DIRTY := $(shell git status --porcelain)
 GIT_TAG := $(shell git describe --always)
 
@@ -14,10 +16,10 @@ else
 TAG := $(GIT_TAG)-dirty
 endif
 
-all: build
+all: run
 
 build:
-	docker build --tag $(PROJ):$(TAG) .
+	$(C_APP) build --tag $(PROJ):$(TAG) .
 
 venv:
 	python3 -m venv $(VENV)
@@ -27,7 +29,7 @@ migrate:
 	./manage.py migrate
 
 run: migrate build
-	docker run \
+	$(C_APP) run \
 		--interactive \
 		--tty \
 		--rm \
