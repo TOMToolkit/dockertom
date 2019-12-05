@@ -10,7 +10,7 @@ cffi==1.12.3
 chardet==3.0.4
 cryptography==2.7
 cycler==0.10.0
-Django==2.2.6
+Django==2.2.8
 django-bootstrap4==1.0.1
 django-contrib-comments==1.9.1
 django-crispy-forms==1.7.2
