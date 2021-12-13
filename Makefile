@@ -45,5 +45,5 @@ run: migrate build
 		--rm \
 		--name $(PROJ) \
 		--publish 8080:8080 \
-		--volume ${PWD}/storage:/tom/storage \
+		--volume ${PWD}/$(DB_PATH):/tom/storage \
 		$(PROJ):$(TAG)
