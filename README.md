@@ -1,3 +1,6 @@
+NOTE: This repository has been archived. For an up-to-date example of a `Dockerfile` appropriate for a TOMToolkit-based TOM,
+please see our [tom-demo](https://www.github.com/LCOGT/tom-demo) repository and feel free to ask for help.
+
 # dockertom
 This is a sample TOM to show how it can be used with
 [Docker](https://www.docker.com/).
